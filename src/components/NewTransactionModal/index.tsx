@@ -6,6 +6,7 @@ import outcomeImg from "../../assets/outcome.svg";
 
 import { TransactionTypeContainer, RadioBox } from "../NewTransactionModal/style";
 import { FormEvent, useState } from "react";
+import { api } from "../../services/api";
 
 interface NewTransactionModalProps {
   isOpen: boolean;
@@ -20,9 +21,10 @@ const [type, setType] = useState('deposit');
 
 function handleCreateNewTransaction(event: FormEvent){
   event.preventDefault();
-  console.table({
+  const data = {
     title,value, category, type
-  })
+  }
+  api.post('/transactions',data)
   }
 
 
